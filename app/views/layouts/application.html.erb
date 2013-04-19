@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Yona</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<ul>
+  <% if current_user %>
+    <li><%= link_to "Logout" , logout_path %></li>
+  <% else %>
+    <li><%= link_to "Login", "/auth/#{DEFAULT_PROVIDER}" %></li>
+  <% end %>
+</ul>
+
+<%= yield %>
+
+</body>
+</html>
