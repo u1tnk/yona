@@ -12,8 +12,9 @@
 #  updated_at  :datetime
 #
 
-require 'spec_helper'
-
-describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+Fabricator(:user) do
+  provider "MyString"
+  uid "MyString"
+  name "MyString"
+  screen_name "MyString"
 end
