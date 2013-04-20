@@ -22,5 +22,7 @@ module Yona
         g.test_framework      :rspec, fixture: true
         g.fixture_replacement :fabrication
     end
+
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
 end

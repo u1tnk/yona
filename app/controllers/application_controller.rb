@@ -33,12 +33,12 @@ class ApplicationController < ActionController::Base
   #-----------#
   # ログイン認証
   def authorize
-#     if params[:controller] == "top" and params[:action] == "index"
-#       # トップページでログイン済みであれば
-#       unless session[:user_id].blank?
-#         redirect_to :controller => "testcases", :action => "index" and return
-#       end
-    if params[:controller] != "top" and params[:controller] != "sessions"
+    if params[:controller] == "top" and params[:action] == "index"
+      # トップページでログイン済みであれば
+      unless session[:user_id].blank?
+        redirect_to :controller => "feeds", :action => "index" and return
+      end
+    elsif params[:controller] != "top" and params[:controller] != "sessions"
       # トップページ以外で未ログインであればトップヘリダイレクト
       if session[:user_id].blank?
         redirect_to :root and return

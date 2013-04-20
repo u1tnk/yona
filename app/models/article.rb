@@ -1,17 +1,21 @@
 # == Schema Information
 #
-# Table name: feeds
+# Table name: articles
 #
-#  id         :integer          not null, primary key
-#  url        :string(255)
-#  title      :string(255)
-#  html_url   :string(255)
-#  kind       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id           :integer          not null, primary key
+#  feed_id      :integer
+#  title        :string(255)
+#  url          :string(255)
+#  summary      :text
+#  author       :string(255)
+#  published_at :datetime
+#  created_at   :datetime
+#  updated_at   :datetime
 #
 
 class Article < ActiveRecord::Base
   belongs_to :feed
+
+  default_scope order("published_at DESC")
 
 end

@@ -1,17 +1,18 @@
 %h1 Listing feeds
 
 %table
-  %tr
-    %th Title
-    %th
-    %th
-    %th
 
-  - @feeds.each do |feed|
-    %tr
-      %td= feed.title
-      %td= link_to 'Show', feed
-      %td= link_to 'Destroy', feed, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  %ul
+    - @tags.each do |tag|
+      %li
+        #{tag.label}
+        %ul
+          - tag.feeds.each do |feed|
+            %li= feed.title
+
+
+-#       %td= link_to 'Show', feed
+-#       %td= link_to 'Destroy', feed, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 

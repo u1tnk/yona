@@ -49,5 +49,13 @@ class Main < ActiveRecord::Migration
     end
     add_index :articles, [:feed_id, :published_at]
     add_index :articles, [:url], unique: true
+
+    create_table :user_articles do |t|
+      t.integer :user_id, index: true
+      t.integer :article_id, index: true
+      t.boolean :readed
+
+      t.timestamps
+    end
   end
 end
