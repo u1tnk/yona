@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 2) do
   add_index "feed_tags", ["feed_id", "tag_id"], name: "index_feed_tags_on_feed_id_and_tag_id", unique: true
 
   create_table "feeds", force: true do |t|
-    t.string   "url"
-    t.string   "title"
-    t.string   "html_url"
-    t.string   "kind"
+    t.string   "url",              null: false
+    t.string   "title",            null: false
+    t.string   "html_url",         null: false
+    t.string   "kind",             null: false
     t.string   "creator"
     t.string   "etag"
     t.datetime "last_modified_at"
@@ -59,9 +59,17 @@ ActiveRecord::Schema.define(version: 2) do
 
   add_index "tags", ["user_id", "label"], name: "index_tags_on_user_id_and_label", unique: true
 
-  create_table "user_feeds", force: true do |t|
+  create_table "user_articles", force: true do |t|
     t.integer  "user_id"
-    t.integer  "feed_id"
+    t.integer  "article_id"
+    t.boolean  "readed"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_feeds", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "feed_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

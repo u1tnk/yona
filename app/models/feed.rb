@@ -67,21 +67,24 @@ class Feed < ActiveRecord::Base
   def fetch
     data = nil
     begin
-      data = Feedzirra::Feed.fetch_and_parse(
-        url,
-        if_modified_since: last_modified_at,
-        if_none_match: etag
-      )
-    rescue e
-      logger.warn "fetch error:" + url + e
+      options = {}
+      options[:if_modified_since] = last_modified_at if last_modified_at
+      options[:if_none_match] = etag if etag
+
+      data = Feedzirra::Feed.fetch_and_parse(url, options)
+    rescue => error
+      logger.warn "fetch error:" + url + " " + error.to_s
       return
     end
 
-    unless data
+    unless data.is_a? Feedzirra::Parser::RSS
       logger.debug "no updated data: " + url
       return
     end
     return if self.last_modified_at && last_modified_at >= data.last_modified
+
+    # vim-users.jpのデータが取得できない
+    return unless data.title
 
     self.title = data.title
     self.etag = data.etag

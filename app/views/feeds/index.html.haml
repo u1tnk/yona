@@ -1,20 +1,25 @@
-%h1 Listing feeds
+.row
+  .span2
+    %ul
+      - @tags.each do |tag|
+        %li
+          #{tag.label}
+  .span2
+    %ul
+      - @tags.first.feeds.each do |feed|
+        %li
+          #{feed.title}
+  .span8
+    %ul
+      - @tags.first.feeds.first.articles.each do |article|
+        %li
+          #{article.title}
 
-%table
-
-  %ul
-    - @tags.each do |tag|
-      %li
-        #{tag.label}
-        %ul
-          - tag.feeds.each do |feed|
-            %li= feed.title
 
 
--#       %td= link_to 'Show', feed
--#       %td= link_to 'Destroy', feed, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-%br
-
-= link_to 'Upload opml', url_for(controller: :feeds, action: :upload)
-= link_to 'New Feed', new_feed_path
+%footer
+  .btn-group
+    .btn= link_to 'upload opml', url_for(controller: :feeds, action: :upload)
+  .btn-group
+    .btn= link_to 'new feed', new_feed_path
