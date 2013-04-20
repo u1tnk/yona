@@ -14,6 +14,8 @@ gem 'pit'
 gem 'omniauth'
 gem 'omniauth-github'
 
+gem 'feedzirra'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

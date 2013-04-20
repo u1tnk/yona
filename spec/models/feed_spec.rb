@@ -3,7 +3,7 @@
 # Table name: feeds
 #
 #  id         :integer          not null, primary key
-#  feed_url   :string(255)
+#  url        :string(255)
 #  title      :string(255)
 #  html_url   :string(255)
 #  kind       :string(255)

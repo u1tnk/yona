@@ -13,6 +13,20 @@
 
 ActiveRecord::Schema.define(version: 2) do
 
+  create_table "articles", force: true do |t|
+    t.integer  "feed_id"
+    t.string   "title"
+    t.string   "url"
+    t.text     "summary"
+    t.string   "author"
+    t.datetime "published_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "articles", ["feed_id", "published_at"], name: "index_articles_on_feed_id_and_published_at"
+  add_index "articles", ["url"], name: "index_articles_on_url", unique: true
+
   create_table "feed_tags", force: true do |t|
     t.integer  "feed_id"
     t.integer  "tag_id"
@@ -27,6 +41,9 @@ ActiveRecord::Schema.define(version: 2) do
     t.string   "title"
     t.string   "html_url"
     t.string   "kind"
+    t.string   "creator"
+    t.string   "etag"
+    t.datetime "last_modified_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

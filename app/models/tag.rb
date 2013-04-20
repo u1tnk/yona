@@ -10,4 +10,7 @@
 #
 
 class Tag < ActiveRecord::Base
+  belongs_to :user
+  has_many :feed_tags
+  has_many :feeds, through: :feed_tags
 end

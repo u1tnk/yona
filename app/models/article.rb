@@ -11,9 +11,7 @@
 #  updated_at :datetime
 #
 
-Fabricator(:feed) do
-  title    "MyString"
-  feed_url "MyString"
-  html_url "MyString"
-  type     ""
+class Article < ActiveRecord::Base
+  belongs_to :feed
+
 end

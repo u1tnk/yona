@@ -13,6 +13,10 @@
 #
 
 class User < ActiveRecord::Base
+  has_many :user_feeds
+  has_many :feeds, through: :user_feeds
+  has_many :tags
+
   private
 
   #---------------------------#
@@ -29,7 +33,7 @@ class User < ActiveRecord::Base
       user[:image] = auth["info"]["image"]
     end
 
-    user.save
+    user.save!
 
     return user
   end
