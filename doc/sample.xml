@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="1.0">
+    <head>
+        <title>opml title</title>
+    </head>
+    <body>
+        <outline text="title" title="title" type="rss"
+            xmlUrl="http://feed.path" htmlUrl="http://html.path"/>
+    </body>
+</opml>
+

@@ -5,13 +5,13 @@
   = @feed.title
 %p
   %b Feed url:
-  = @feed.feed_url
+  = @feed.url
 %p
   %b Html url:
   = @feed.html_url
 %p
-  %b Type:
-  = @feed.type
+  %b Kind:
+  = @feed.kind
 
 = link_to 'Edit', edit_feed_path(@feed)
 \|

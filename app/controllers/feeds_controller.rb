@@ -61,6 +61,13 @@ class FeedsController < ApplicationController
     end
   end
 
+  def upload
+    if request.method == "POST"
+      Feed.import current_user, request.params[:opml_file].read
+      redirect_to :feeds
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_feed
@@ -69,6 +76,6 @@ class FeedsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feed_params
-      params.require(:feed).permit(:title, :feed_url, :html_url, :type)
+      params.require(:feed).permit(:title, :url, :html_url, :kind)
     end
 end

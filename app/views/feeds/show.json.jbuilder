@@ -1,1 +1,1 @@
-json.extract! @feed, :title, :feed_url, :html_url, :type, :created_at, :updated_at
+json.extract! @feed, :title, :url, :html_url, :kind, :created_at, :updated_at

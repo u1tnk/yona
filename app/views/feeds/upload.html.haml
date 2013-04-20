@@ -1,0 +1,7 @@
+%h1 upload opml
+
+=form_tag 'upload', multipart: true do
+  =file_field_tag "opml_file"
+  =submit_tag 'Import'
+
+= link_to 'Feeds', feeds_path
