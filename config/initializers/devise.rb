@@ -3,11 +3,11 @@ pit = Pit.get('yona', require: {
   github_secret: "",
 })
 # for heroku
-pit["github_id"] ||= ENV["github_id"]
-pit["github_secret"] ||= ENV["github_secret"]
+pit[:github_id] ||= ENV["github_id"]
+pit[:github_secret] ||= ENV["github_secret"]
 
 Rails.application.config.middleware.use OmniAuth::Builder do
 #   provider :developer unless Rails.env.production?
-  provider :github, pit["github_id"], pit["github_secret"]
+  provider :github, pit[:github_id], pit[:github_secret]
 end
 

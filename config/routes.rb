@@ -1,5 +1,4 @@
 Yona::Application.routes.draw do
-  resources :feeds
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -50,7 +49,7 @@ Yona::Application.routes.draw do
   #   end
 
   # for omniauth
-  post "/auth/:provider/callback" => "sessions#callback"
+  get "/auth/:provider/callback" => "sessions#callback"
   get "/auth/failure" => "sessions#failure"
   get "/logout" => "sessions#destroy", :as => :logout
 end
