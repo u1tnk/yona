@@ -4,42 +4,19 @@
         <title>u1 の Google リーダー登録フィード</title>
     </head>
          <outline title="etc" text="etc">
-            <outline text="100SHIKI" title="100SHIKI" type="rss"
-                xmlUrl="http://www.100shiki.com/feed" htmlUrl="http://www.100shiki.com"/>
             <outline text="AppleInsider" title="AppleInsider" type="rss"
                 xmlUrl="http://www.appleinsider.com/appleinsider.rss" htmlUrl="http://appleinsider.com"/>
             <outline text="はてなブックマーク - 人気エントリー"
                 title="はてなブックマーク - 人気エントリー" type="rss"
                 xmlUrl="http://feeds.feedburner.com/hatena/b/hotentry" htmlUrl="http://b.hatena.ne.jp/hotentry"/>
-            <outline text="やまもといちろうBLOG（ブログ）" title="やまもといちろうBLOG（ブログ）"
-                type="rss"
-                xmlUrl="http://kirik.tea-nifty.com/diary/atom.xml" htmlUrl="http://kirik.tea-nifty.com/diary/"/>
-            <outline text="痛いニュース(ﾉ∀`)" title="痛いニュース(ﾉ∀`)" type="rss"
-                xmlUrl="http://blog.livedoor.jp/dqnplus/index.rdf" htmlUrl="http://blog.livedoor.jp/dqnplus/"/>
         </outline>
     <body>
         <outline title="tech" text="tech">
+            <outline text="404 Blog Not Found"
+                title="404 Blog Not Found" type="rss"
+                xmlUrl="http://blog.livedoor.jp/dankogai/index.rdf" htmlUrl="http://blog.livedoor.jp/dankogai/"/>
             <outline text="AquaSKK 開発日記" title="AquaSKK 開発日記" type="rss"
                 xmlUrl="http://d.hatena.ne.jp/t_suwa/rss" htmlUrl="http://d.hatena.ne.jp/t_suwa/"/>
-            <outline text="As a Futurist..." title="As a Futurist..."
-                type="rss" xmlUrl="http://blog.riywo.com/feed/atom" htmlUrl="http://blog.riywo.com/"/>
-            <outline text="blog.nomadscafe.jp"
-                title="blog.nomadscafe.jp" type="rss"
-                xmlUrl="http://feeds.feedburner.jp/nomadscafejp" htmlUrl="http://blog.nomadscafe.jp/"/>
-            <outline text="Geekなぺーじ" title="Geekなぺーじ" type="rss"
-                xmlUrl="http://www.geekpage.jp/rss.php" htmlUrl="http://www.geekpage.jp/"/>
-            <outline text="Jewel-mmo開発日記" title="Jewel-mmo開発日記"
-                type="rss" xmlUrl="http://dgames.jp/dan/rss" htmlUrl="http://dgames.jp/dan"/>
-            <outline text="kazuhoのメモ置き場" title="kazuhoのメモ置き場" type="rss"
-                xmlUrl="http://d.hatena.ne.jp/kazuhooku/rss" htmlUrl="http://d.hatena.ne.jp/kazuhooku/"/>
-            <outline text="willnet.in" title="willnet.in" type="rss"
-                xmlUrl="http://willnet.in/index.atom" htmlUrl="http://willnet.in/"/>
-            <outline text="Zusaarの新着情報" title="Zusaarの新着情報" type="rss"
-                xmlUrl="http://www.zusaar.com/index.rss" htmlUrl="http://www.zusaar.com"/>
-            <outline text="ゆろよろ日記" title="ゆろよろ日記" type="rss"
-                xmlUrl="http://d.hatena.ne.jp/yuroyoro/rss2" htmlUrl="http://yuroyoro.hatenablog.com/"/>
-            <outline text="寄り道ばかりの お勉強日記★" title="寄り道ばかりの お勉強日記★"
-                type="rss" xmlUrl="http://d.hatena.ne.jp/tokorom/rss" htmlUrl="http://d.hatena.ne.jp/tokorom/"/>
             <outline text="気になる、記になる…" title="気になる、記になる…" type="rss"
                 xmlUrl="http://feeds.feedburner.com/taisy0" htmlUrl="http://taisy0.com"/>
             <outline text="漢(オトコ)のコンピュータ道" title="漢(オトコ)のコンピュータ道"
