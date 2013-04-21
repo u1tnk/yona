@@ -14,5 +14,5 @@ class Tag < ActiveRecord::Base
   has_many :feed_tags
   has_many :feeds, through: :feed_tags
 
-  default_scope order(:label)
+  default_scope {order(:label)}
 end

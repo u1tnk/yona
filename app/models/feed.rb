@@ -64,6 +64,12 @@ class Feed < ActiveRecord::Base
     end
   end
 
+  def self.fetch_all
+    transaction do
+      Feed.all.map(&:fetch)
+    end
+  end
+
   def fetch
     data = nil
     begin
@@ -83,11 +89,11 @@ class Feed < ActiveRecord::Base
     end
     return if self.last_modified_at && last_modified_at >= data.last_modified
 
-    # vim-users.jpのデータが取得できない
+    # vim-users.jpのデータが取得できないがnilにはならない
     return unless data.title
 
     self.title = data.title
-    self.etag = data.etag
+    self.etag  = data.etag
     self.last_modified_at = data.last_modified
     self.save!
 
@@ -101,6 +107,7 @@ class Feed < ActiveRecord::Base
           title: e.title,
           summary: e.summary,
           author: e.author,
+          url: e.url,
           published_at: e.published,
         )
       else
@@ -109,6 +116,7 @@ class Feed < ActiveRecord::Base
           title: e.title,
           summary: e.summary,
           author: e.author,
+          url: e.url,
           published_at: e.published,
         )
       end

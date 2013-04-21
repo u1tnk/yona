@@ -1,25 +1,20 @@
-.row
-  .span2
-    %ul
+.btn-group
+  .btn= link_to 'upload opml', url_for(action: :upload)
+.btn-group
+  .btn= link_to 'new feed', new_feed_path
+
+.row.index
+  .span3
+    %ul#tags
       - @tags.each do |tag|
         %li
-          #{tag.label}
-  .span2
-    %ul
-      - @tags.first.feeds.each do |feed|
-        %li
-          #{feed.title}
-  .span8
-    %ul
-      - @tags.first.feeds.first.articles.each do |article|
-        %li
-          #{article.title}
+          = tag.label
+        - unless tag.feeds.empty?
+          %ul.feed
+            - tag.feeds.each do |feed|
+              %li= link_to feed.title, url_for(controller: :articles, action: :index, feed_id: feed.id), remote: true, 'data-type' => :html, class: "feed_link"
+  .span3
+    %ul#articles
+  .span6
+    %ul#contents
 
-
-
-
-%footer
-  .btn-group
-    .btn= link_to 'upload opml', url_for(controller: :feeds, action: :upload)
-  .btn-group
-    .btn= link_to 'new feed', new_feed_path

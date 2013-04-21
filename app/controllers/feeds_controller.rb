@@ -64,6 +64,7 @@ class FeedsController < ApplicationController
   def upload
     if request.method == "POST"
       Feed.import current_user, request.params[:opml_file].read
+      Feed.fetch_all
       redirect_to :feeds
     end
   end

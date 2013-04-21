@@ -1,3 +1,14 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  index = $(".index")
+  index.find('a.feed_link').on(
+    'ajax:success'
+    (data, res, xhr) ->
+      index.find('#articles').html(res)
+      index.find('a.article_link').on(
+        'ajax:success'
+        (data, res, xhr) ->
+          index.find('#contents').html(res)
+      )
+  )
+
+

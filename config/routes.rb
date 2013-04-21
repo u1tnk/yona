@@ -1,8 +1,11 @@
 Yona::Application.routes.draw do
 
-  resources :feeds do
+  resources :feeds, shallow: true do
+    resources :articles
     collection do
       match :upload, via: [:get, :post]
+#       get "/article_list/:feed_id" => "feeds#article_list"
+#       get "/article_list/:feed_id" => "feeds#article_list"
     end
   end
 
