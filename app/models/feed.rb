@@ -78,6 +78,8 @@ class Feed < ActiveRecord::Base
       options[:if_none_match] = etag if etag
 
       data = Feedzirra::Feed.fetch_and_parse(url, options)
+      # loafah.scrub :pruneで有害タグを削除
+      data.sanitize_entries!
     rescue => error
       logger.warn "fetch error:" + url + " " + error.to_s
       return

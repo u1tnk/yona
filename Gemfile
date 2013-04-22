@@ -14,7 +14,7 @@ gem 'pit'
 gem 'omniauth'
 gem 'omniauth-github'
 
-gem 'feedzirra'
+gem 'feedzirra', :git => 'git://github.com/pauldix/feedzirra.git', :ref => '71721ddaeba18383ae283600b6a2eb8a717d7b58'
 
 # Gems used only for assets and not required
 # in production environments by default.
