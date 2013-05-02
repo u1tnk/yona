@@ -41,7 +41,7 @@ class Main < ActiveRecord::Migration
       t.integer :feed_id
       t.string :title
       t.string :url
-      t.text :summary
+      t.text :content
       t.string :author
       t.datetime :published_at
 

@@ -6,7 +6,7 @@
 #  feed_id      :integer
 #  title        :string(255)
 #  url          :string(255)
-#  summary      :text
+#  content      :text
 #  author       :string(255)
 #  published_at :datetime
 #  created_at   :datetime

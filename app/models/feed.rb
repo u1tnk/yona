@@ -107,7 +107,7 @@ class Feed < ActiveRecord::Base
         # TODO 既読削除
         article.update_attributes!(
           title: e.title,
-          summary: e.summary,
+          content: e.content,
           author: e.author,
           url: e.url,
           published_at: e.published,
@@ -116,7 +116,7 @@ class Feed < ActiveRecord::Base
         Article.create(
           feed: self,
           title: e.title,
-          summary: e.summary,
+          content: e.content,
           author: e.author,
           url: e.url,
           published_at: e.published,
