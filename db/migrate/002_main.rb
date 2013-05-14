@@ -22,26 +22,26 @@ class Main < ActiveRecord::Migration
     add_index :user_feeds, [:user_id, :feed_id], unique: true
 
     create_table :tags do |t|
-      t.integer :user_id
-      t.string :label
+      t.integer :user_id, null: false
+      t.string :label, null: false
 
       t.timestamps
     end
     add_index :tags, [:user_id, :label], unique: true
 
     create_table :feed_tags do |t|
-      t.integer :feed_id
-      t.integer :tag_id, index: true
+      t.integer :feed_id, null: false
+      t.integer :tag_id, index: true, null: false
 
       t.timestamps
     end
     add_index :feed_tags, [:feed_id, :tag_id], unique: true
 
     create_table :articles do |t|
-      t.integer :feed_id
-      t.string :title
-      t.string :url
-      t.text :content
+      t.integer :feed_id, null: false
+      t.string :title, null: false
+      t.string :url, null: false
+      t.text :content, null: false
       t.string :author
       t.datetime :published_at
 
@@ -51,9 +51,9 @@ class Main < ActiveRecord::Migration
     add_index :articles, [:url], unique: true
 
     create_table :user_articles do |t|
-      t.integer :user_id
-      t.integer :article_id, index: true
-      t.boolean :readed
+      t.integer :user_id, null: false
+      t.integer :article_id, index: true, null: false
+      t.boolean :readed, null: false, default: false
 
       t.timestamps
     end

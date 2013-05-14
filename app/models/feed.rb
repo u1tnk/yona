@@ -70,26 +70,27 @@ class Feed < ActiveRecord::Base
     end
   end
 
-  def fetch
+  def fetch(reload: false)
     data = nil
     begin
       options = {}
-      options[:if_modified_since] = last_modified_at if last_modified_at
-      options[:if_none_match] = etag if etag
+      unless reload
+        options[:if_modified_since] = last_modified_at if last_modified_at
+        options[:if_none_match] = etag if etag
+      end
 
       data = Feedzirra::Feed.fetch_and_parse(url, options)
+
+      if !data || (!reload && last_modified_at && last_modified_at >= data.last_modified)
+        logger.debug "no updated data: " + url
+        return
+      end
       # loafah.scrub :pruneで有害タグを削除
       data.sanitize_entries!
     rescue => error
       logger.warn "fetch error:" + url + " " + error.to_s
       return
     end
-
-    unless data.is_a? Feedzirra::Parser::RSS
-      logger.debug "no updated data: " + url
-      return
-    end
-    return if self.last_modified_at && last_modified_at >= data.last_modified
 
     # vim-users.jpのデータが取得できないがnilにはならない
     return unless data.title
@@ -103,11 +104,11 @@ class Feed < ActiveRecord::Base
       article = Article.where(url: e.url).first
 
       if article
-        next if article.published_at >= e.published
+        next if article.published_at >= e.published && !reload
         # TODO 既読削除
         article.update_attributes!(
           title: e.title,
-          content: e.content,
+          content: e.content || e.summary,
           author: e.author,
           url: e.url,
           published_at: e.published,
