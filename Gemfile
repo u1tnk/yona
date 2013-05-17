@@ -4,13 +4,14 @@ ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0.rc1'
 
-gem 'sqlite3'
-
 gem 'settingslogic'
 gem 'enumerated_attribute'
 gem 'hashie'
 gem 'action_args'
 gem 'pit'
+
+# for heroku
+gem 'pg'
 
 gem 'omniauth'
 gem 'omniauth-github'
@@ -39,6 +40,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.0.1'
 
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -62,6 +64,8 @@ group :development do
   gem "guard"
   gem 'guard-pow'
   gem 'guard-bundler'
+
+  gem 'sqlite3'
 end
 
 group :development, :test do

@@ -146,6 +146,7 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
+    pg (0.15.1)
     pit (0.0.7)
     polyglot (0.3.3)
     pry (0.9.12)
@@ -284,6 +285,7 @@ DEPENDENCIES
   jquery-rails
   omniauth
   omniauth-github
+  pg
   pit
   pry-doc
   pry-nav
