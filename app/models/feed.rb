@@ -79,7 +79,8 @@ class Feed < ActiveRecord::Base
         options[:if_none_match] = etag if etag
       end
 
-      data = Feedzirra::Feed.fetch_and_parse(url, options)
+      raw = Feedzirra::Feed.fetch_raw(url, options)
+      data = Feedzirra::Feed.parse(raw.strip) if raw
 
       if !data || (!reload && last_modified_at && last_modified_at >= data.last_modified)
         logger.debug "no updated data: " + url
