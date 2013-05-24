@@ -3,10 +3,10 @@
 # Table name: feeds
 #
 #  id               :integer          not null, primary key
-#  url              :string(255)
-#  title            :string(255)
-#  html_url         :string(255)
-#  kind             :string(255)
+#  url              :string(255)      not null
+#  title            :string(255)      not null
+#  html_url         :string(255)      not null
+#  kind             :string(255)      not null
 #  creator          :string(255)
 #  etag             :string(255)
 #  last_modified_at :datetime
@@ -102,27 +102,33 @@ class Feed < ActiveRecord::Base
     self.save!
 
     data.entries.map do |e|
-      article = Article.where(url: e.url).first
+      begin
+        article = Article.where(url: e.url).first
 
-      if article
-        next if article.published_at >= e.published && !reload
-        # TODO 既読削除
-        article.update_attributes!(
-          title: e.title,
-          content: e.content || e.summary,
-          author: e.author,
-          url: e.url,
-          published_at: e.published,
-        )
-      else
-        Article.create(
-          feed: self,
-          title: e.title,
-          content: e.content,
-          author: e.author,
-          url: e.url,
-          published_at: e.published,
-        )
+        if article
+          next if article.published_at >= e.published && !reload
+          # TODO 既読削除
+          article.update_attributes!(
+            title: e.title,
+            content: e.content || e.summary,
+            author: e.author,
+            url: e.url,
+            published_at: e.published,
+          )
+        else
+          Article.create(
+            feed: self,
+            title: e.title,
+            content: e.content || e.summary,
+            author: e.author,
+            url: e.url,
+            published_at: e.published,
+          )
+        end
+
+      rescue => error
+        logger.warn "save error:" + data.url + " " + error.to_s
+        return
       end
     end
   end

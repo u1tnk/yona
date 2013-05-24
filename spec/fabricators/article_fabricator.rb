@@ -13,8 +13,8 @@
 #  updated_at   :datetime
 #
 
-class Article < ActiveRecord::Base
-  belongs_to :feed
-
-  default_scope {order("published_at DESC")}
+Fabricator(:article) do
+  title    "MyString"
+  url  { sequence(:url).to_s }
+  content "MyString"
 end

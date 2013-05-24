@@ -1,16 +1,17 @@
 # == Schema Information
 #
-# Table name: feed_tags
+# Table name: user_articles
 #
 #  id         :integer          not null, primary key
-#  feed_id    :integer
-#  tag_id     :integer
+#  user_id    :integer          not null
+#  article_id :integer          not null
+#  readed     :boolean          default(FALSE), not null
 #  created_at :datetime
 #  updated_at :datetime
 #
 
 require 'spec_helper'
 
-describe FeedTag do
+describe UserArticle do
   pending "add some examples to (or delete) #{__FILE__}"
 end

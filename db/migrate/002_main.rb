@@ -41,7 +41,7 @@ class Main < ActiveRecord::Migration
       t.integer :feed_id, null: false
       t.string :title, null: false
       t.string :url, null: false
-      t.text :content, null: false
+      t.column :content, 'mediumtext'
       t.string :author
       t.datetime :published_at
 
@@ -53,7 +53,7 @@ class Main < ActiveRecord::Migration
     create_table :user_articles do |t|
       t.integer :user_id, null: false
       t.integer :article_id, index: true, null: false
-      t.boolean :readed, null: false, default: false
+      t.datetime :readed_at
 
       t.timestamps
     end

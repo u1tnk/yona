@@ -1,18 +1,16 @@
 # == Schema Information
 #
-# Table name: tags
+# Table name: user_articles
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer          not null
-#  label      :string(255)      not null
+#  article_id :integer          not null
+#  readed     :boolean          default(FALSE), not null
 #  created_at :datetime
 #  updated_at :datetime
 #
 
-class Tag < ActiveRecord::Base
+class UserArticle < ActiveRecord::Base
   belongs_to :user
-  has_many :feed_tags
-  has_many :feeds, through: :feed_tags
-
-  default_scope {order(:label)}
+  belongs_to :article
 end

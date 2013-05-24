@@ -14,27 +14,27 @@
 ActiveRecord::Schema.define(version: 2) do
 
   create_table "articles", force: true do |t|
-    t.integer  "feed_id"
-    t.string   "title"
-    t.string   "url"
-    t.text     "content"
+    t.integer  "feed_id",                       null: false
+    t.string   "title",                         null: false
+    t.string   "url",                           null: false
+    t.text     "content",      limit: 16777215
     t.string   "author"
     t.datetime "published_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "articles", ["feed_id", "published_at"], name: "index_articles_on_feed_id_and_published_at"
-  add_index "articles", ["url"], name: "index_articles_on_url", unique: true
+  add_index "articles", ["feed_id", "published_at"], name: "index_articles_on_feed_id_and_published_at", using: :btree
+  add_index "articles", ["url"], name: "index_articles_on_url", unique: true, using: :btree
 
   create_table "feed_tags", force: true do |t|
-    t.integer  "feed_id"
-    t.integer  "tag_id"
+    t.integer  "feed_id",    null: false
+    t.integer  "tag_id",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "feed_tags", ["feed_id", "tag_id"], name: "index_feed_tags_on_feed_id_and_tag_id", unique: true
+  add_index "feed_tags", ["feed_id", "tag_id"], name: "index_feed_tags_on_feed_id_and_tag_id", unique: true, using: :btree
 
   create_table "feeds", force: true do |t|
     t.string   "url",              null: false
@@ -48,26 +48,26 @@ ActiveRecord::Schema.define(version: 2) do
     t.datetime "updated_at"
   end
 
-  add_index "feeds", ["url"], name: "index_feeds_on_url", unique: true
+  add_index "feeds", ["url"], name: "index_feeds_on_url", unique: true, using: :btree
 
   create_table "tags", force: true do |t|
-    t.integer  "user_id"
-    t.string   "label"
+    t.integer  "user_id",    null: false
+    t.string   "label",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "tags", ["user_id", "label"], name: "index_tags_on_user_id_and_label", unique: true
+  add_index "tags", ["user_id", "label"], name: "index_tags_on_user_id_and_label", unique: true, using: :btree
 
   create_table "user_articles", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "article_id"
-    t.boolean  "readed"
+    t.integer  "user_id",    null: false
+    t.integer  "article_id", null: false
+    t.datetime "readed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "user_articles", ["user_id", "article_id"], name: "index_user_articles_on_user_id_and_article_id", unique: true
+  add_index "user_articles", ["user_id", "article_id"], name: "index_user_articles_on_user_id_and_article_id", unique: true, using: :btree
 
   create_table "user_feeds", force: true do |t|
     t.integer  "user_id",    null: false
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2) do
     t.datetime "updated_at"
   end
 
-  add_index "user_feeds", ["user_id", "feed_id"], name: "index_user_feeds_on_user_id_and_feed_id", unique: true
+  add_index "user_feeds", ["user_id", "feed_id"], name: "index_user_feeds_on_user_id_and_feed_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "provider"

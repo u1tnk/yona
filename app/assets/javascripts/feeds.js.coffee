@@ -4,6 +4,8 @@ $ ->
     'ajax:success'
     (data, res, xhr) ->
       index.find('#articles').html(res)
+      index.find('#contents').children().remove()
+
       index.find('a.article_link').on(
         'ajax:success'
         (data, res, xhr) ->
