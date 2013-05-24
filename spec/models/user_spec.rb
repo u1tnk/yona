@@ -24,7 +24,7 @@ describe User do
       Timecop.freeze(now) do
         user.read(feed.articles.first)
         expect(user.user_articles.size).to eq 1
-        expect(user.user_articles.first.readed_at).to eq now
+        expect(user.user_articles.first.readed_at.to_i).to eq now.to_i
       end
     end
   end
