@@ -10,13 +10,14 @@ gem 'hashie'
 gem 'action_args'
 gem 'pit'
 
-# for heroku
-gem 'pg'
+gem 'mysql2'
 
 gem 'omniauth'
 gem 'omniauth-github'
 
 gem 'feedzirra', :git => 'git://github.com/pauldix/feedzirra.git', :ref => '71721ddaeba18383ae283600b6a2eb8a717d7b58'
+
+gem 'commands'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -64,8 +65,6 @@ group :development do
   gem "guard"
   gem 'guard-pow'
   gem 'guard-bundler'
-
-  gem 'sqlite3'
 end
 
 group :development, :test do
