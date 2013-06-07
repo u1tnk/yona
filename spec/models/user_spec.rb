@@ -29,4 +29,27 @@ describe User do
     end
   end
 
+  describe '.unread_feeds' do
+    let(:feed){Fabricate(:feed) {
+      articles(count: 3){ Fabricate.build :article }
+    }}
+
+    context 'ゼロ件既読' do
+      it '取得' do
+        expect(user.unread_feeds).to > 0
+      end
+    end
+    context '一件既読' do
+      it '取得' do
+        expect(user.unread_feeds).to > 0
+      end
+    end
+    context '全件既読' do
+      it '取得せず' do
+        expect(user.unread_feeds).to be 0
+      end
+    end
+  end
+
+
 end

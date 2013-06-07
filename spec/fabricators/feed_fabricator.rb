@@ -19,5 +19,6 @@ Fabricator(:feed) do
   url "MyString"
   html_url "MyString"
   articles(count: 3){ Fabricate.build :article }
+  articles_count 3
   kind     :rss
 end

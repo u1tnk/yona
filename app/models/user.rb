@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     save!
   end
 
+  def unread_feeds
+#     feeds.
+  end
+
   private
 
   #---------------------------#

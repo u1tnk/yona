@@ -14,7 +14,7 @@
 #
 
 class Article < ActiveRecord::Base
-  belongs_to :feed
+  belongs_to :feed, counter_cache: true
 
   default_scope {order("published_at DESC")}
 end

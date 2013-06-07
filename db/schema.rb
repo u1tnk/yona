@@ -13,6 +13,16 @@
 
 ActiveRecord::Schema.define(version: 2) do
 
+  create_table "article_read_log", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "article_id", null: false
+    t.datetime "readed_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "article_read_log", ["user_id", "article_id"], name: "index_article_read_log_on_user_id_and_article_id", unique: true, using: :btree
+
   create_table "articles", force: true do |t|
     t.integer  "feed_id",                       null: false
     t.string   "title",                         null: false
@@ -37,13 +47,14 @@ ActiveRecord::Schema.define(version: 2) do
   add_index "feed_tags", ["feed_id", "tag_id"], name: "index_feed_tags_on_feed_id_and_tag_id", unique: true, using: :btree
 
   create_table "feeds", force: true do |t|
-    t.string   "url",              null: false
-    t.string   "title",            null: false
-    t.string   "html_url",         null: false
-    t.string   "kind",             null: false
+    t.string   "url",                          null: false
+    t.string   "title",                        null: false
+    t.string   "html_url",                     null: false
+    t.string   "kind",                         null: false
     t.string   "creator"
     t.string   "etag"
     t.datetime "last_modified_at"
+    t.integer  "articles_count",   default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -58,16 +69,6 @@ ActiveRecord::Schema.define(version: 2) do
   end
 
   add_index "tags", ["user_id", "label"], name: "index_tags_on_user_id_and_label", unique: true, using: :btree
-
-  create_table "user_articles", force: true do |t|
-    t.integer  "user_id",    null: false
-    t.integer  "article_id", null: false
-    t.datetime "readed_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "user_articles", ["user_id", "article_id"], name: "index_user_articles_on_user_id_and_article_id", unique: true, using: :btree
 
   create_table "user_feeds", force: true do |t|
     t.integer  "user_id",    null: false
