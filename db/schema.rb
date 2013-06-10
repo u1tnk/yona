@@ -13,15 +13,15 @@
 
 ActiveRecord::Schema.define(version: 2) do
 
-  create_table "article_read_log", force: true do |t|
+  create_table "article_read_logs", force: true do |t|
     t.integer  "user_id",    null: false
+    t.integer  "feed_id",    null: false
     t.integer  "article_id", null: false
-    t.datetime "readed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "article_read_log", ["user_id", "article_id"], name: "index_article_read_log_on_user_id_and_article_id", unique: true, using: :btree
+  add_index "article_read_logs", ["user_id", "feed_id", "article_id"], name: "index_article_read_logs_on_user_id_and_feed_id_and_article_id", unique: true, using: :btree
 
   create_table "articles", force: true do |t|
     t.integer  "feed_id",                       null: false

@@ -5,6 +5,7 @@ class FeedsController < ApplicationController
   # GET /feeds.json
   def index
     @tags = current_user.tags
+    @unread_user_feeds = UserFeed.unreads(current_user)
   end
 
   # GET /feeds/1

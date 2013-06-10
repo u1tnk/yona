@@ -1,17 +1,17 @@
 # == Schema Information
 #
-# Table name: user_articles
+# Table name: article_read_logs
 #
 #  id         :integer          not null, primary key
 #  user_id    :integer          not null
 #  article_id :integer          not null
-#  readed     :boolean          default(FALSE), not null
+#  readed_at  :datetime
 #  created_at :datetime
 #  updated_at :datetime
 #
 
-require 'spec_helper'
-
-describe UserArticle do
-  pending "add some examples to (or delete) #{__FILE__}"
+class ArticleReadLog < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :article
+  belongs_to :feed
 end

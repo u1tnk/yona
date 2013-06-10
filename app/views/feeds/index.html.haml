@@ -9,10 +9,13 @@
       - @tags.each do |tag|
         %li
           = tag.label
-        - unless tag.feeds.empty?
+        - user_feeds = UserFeed.select_by_tag(@unread_user_feeds, tag)
+        - unless user_feeds.empty?
           %ul.feed
-            - tag.feeds.each do |feed|
-              %li= link_to feed.title, url_for(controller: :articles, action: :index, feed_id: feed.id), remote: true, 'data-type' => :html, class: "feed_link"
+            - user_feeds.each do |uf|
+              %li
+                = link_to(url_for(controller: :articles, action: :index, feed_id: uf.feed.id), remote: true, 'data-type' => :html, class: "feed_link") do
+                  = raw "#{uf.feed.title}(<span id="">#{uf.unread_articles_count}</span>)"
   .span3
     %ul#articles
   .span6

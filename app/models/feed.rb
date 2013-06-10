@@ -10,6 +10,7 @@
 #  creator          :string(255)
 #  etag             :string(255)
 #  last_modified_at :datetime
+#  articles_count   :integer          default(0), not null
 #  created_at       :datetime
 #  updated_at       :datetime
 #

@@ -52,13 +52,14 @@ class Main < ActiveRecord::Migration
     add_index :articles, [:feed_id, :published_at]
     add_index :articles, [:url], unique: true
 
-    create_table :article_read_log do |t|
+    create_table :article_read_logs do |t|
       t.integer :user_id, null: false
+      # 冗長だけど、既読チェックの処理が簡潔になる
+      t.integer :feed_id, null: false
       t.integer :article_id, null: false
-      t.datetime :readed_at
 
       t.timestamps
     end
-    add_index :article_read_log, [:user_id, :article_id], unique: true
+    add_index :article_read_logs, [:user_id, :feed_id, :article_id], unique: true
   end
 end

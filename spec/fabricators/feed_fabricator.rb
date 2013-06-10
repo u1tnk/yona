@@ -10,15 +10,14 @@
 #  creator          :string(255)
 #  etag             :string(255)
 #  last_modified_at :datetime
+#  articles_count   :integer          default(0), not null
 #  created_at       :datetime
 #  updated_at       :datetime
 #
 
 Fabricator(:feed) do
   title    "MyString"
-  url "MyString"
-  html_url "MyString"
-  articles(count: 3){ Fabricate.build :article }
-  articles_count 3
+  url {Faker::Internet.http_url}
+  html_url {Faker::Internet.http_url}
   kind     :rss
 end
