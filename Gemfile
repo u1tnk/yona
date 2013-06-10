@@ -58,7 +58,6 @@ group :development do
   # png圧縮
   gem 'tinypng'
   # n+1検知
-  gem 'ruby-growl'
   gem 'bullet'
 
   # guard実行でファイル更新を検知して色々やる
@@ -90,10 +89,13 @@ group :development, :test do
   gem "rails_best_practices"
   gem 'annotate'
   gem 'database_cleaner'
+
+  gem 'spring', :git => 'git://github.com/jonleighton/spring.git'
+
+  gem 'terminal-notifier-guard'
 end
 
 group :test do
-  gem "growl"
   gem 'rb-fsevent', '~> 0.9'
   gem 'guard-rspec'
   gem 'webmock'

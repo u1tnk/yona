@@ -16,7 +16,7 @@ guard 'pow' do
   watch(%r{^config/initializers/.*\.rb$})
 end
 
-guard 'rspec' do
+guard 'rspec', cli: "--color --format nested", notification: true do # binstubs:true, spring: trueのどちらか一方で通知が来なくなるので不採用
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  { "spec" }
