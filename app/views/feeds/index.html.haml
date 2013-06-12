@@ -15,7 +15,7 @@
             - user_feeds.each do |uf|
               %li
                 = link_to(url_for(controller: :articles, action: :index, feed_id: uf.feed.id), remote: true, 'data-type' => :html, class: "feed_link") do
-                  = raw "#{uf.feed.title}(<span id="">#{uf.unread_articles_count}</span>)"
+                  = raw "#{uf.feed.title}(<span class=\"unread_articles_count\">#{uf.unread_articles_count}</span>)"
   .span3
     %ul#articles
   .span6
