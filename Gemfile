@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc1'
+gem 'rails', '4.0.0.rc2'
 
 gem 'settingslogic'
 gem 'enumerated_attribute'
@@ -90,7 +90,7 @@ group :development, :test do
   gem 'annotate'
   gem 'database_cleaner'
 
-  gem 'spring', :git => 'git://github.com/jonleighton/spring.git'
+  gem 'spring'
 
   gem 'terminal-notifier-guard'
 end
