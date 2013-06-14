@@ -8,9 +8,11 @@
         - unless user_feeds.empty?
           %ul.feed
             - user_feeds.each do |uf|
+            - feed = uf.feed
               %li
-                = link_to(url_for(controller: :articles, action: :index, feed_id: uf.feed.id), remote: true, 'data-type' => :html, class: "feed_link") do
-                  = raw "#{truncate(uf.feed.title, length: 12)}&nbsp;(<span class=\"unread_articles_count\">#{uf.unread_articles_count}</span>)"
+                = image_tag "#{feed.html_url}favicon.ico", alt: feed.title, class: 'favicon'
+                = link_to(url_for(controller: :articles, action: :index, feed_id: feed.id), remote: true, 'data-type' => :html, class: "feed_link") do
+                  = raw "#{truncate(uf.feed.title, length: 10)}<span class=\"badge\">#{uf.unread_articles_count}</span>"
   .span3.scroll
     %ul#articles
   .span7.scroll
