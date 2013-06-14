@@ -64,6 +64,7 @@ group :development do
   gem "guard"
   gem 'guard-pow'
   gem 'guard-bundler'
+  gem 'guard-livereload'
 end
 
 group :development, :test do
