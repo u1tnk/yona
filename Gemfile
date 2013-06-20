@@ -17,20 +17,18 @@ gem 'omniauth-github'
 
 gem 'feedzirra', :git => 'git://github.com/pauldix/feedzirra.git', :ref => '71721ddaeba18383ae283600b6a2eb8a717d7b58'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 4.0.0.rc2'
-  gem 'compass-rails'
-  gem 'bootstrap-sass'
-  gem 'coffee-rails', '~> 4.0.0.rc2'
-  gem 'haml-rails'
+# gem 'sprockets-rails', github: 'rails/sprockets-rails'
+gem 'sass-rails', '~> 4.0.0.rc2'
+gem 'compass-rails', github: "milgner/compass-rails", branch: "rails4"
+# gem 'compass-rails', github: 'milgner/compass-rails', ref: '1749c06f15dc4b058427e7969810457213647fb8'
+gem 'bootstrap-sass'
+gem 'coffee-rails', '~> 4.0.0.rc2'
+gem 'haml-rails'
 
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', platforms: :ruby
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer', platforms: :ruby
 
-  gem 'uglifier', '>= 1.0.3'
-end
+gem 'uglifier', '>= 1.0.3'
 
 gem 'jquery-rails'
 
