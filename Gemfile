@@ -17,14 +17,13 @@ gem 'omniauth-github'
 
 gem 'feedzirra', :git => 'git://github.com/pauldix/feedzirra.git', :ref => '71721ddaeba18383ae283600b6a2eb8a717d7b58'
 
-gem 'commands'
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 4.0.0.beta1'
-  gem 'bootstrap-sass', '~> 2.3.1.0'
-  gem 'coffee-rails', '~> 4.0.0.beta1'
+  gem 'sass-rails',   '~> 4.0.0.rc2'
+  gem 'compass-rails'
+  gem 'bootstrap-sass'
+  gem 'coffee-rails', '~> 4.0.0.rc2'
   gem 'haml-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
@@ -55,8 +54,6 @@ gem 'jbuilder', '~> 1.0.1'
 # gem 'debugger'
 
 group :development do
-  # png圧縮
-  gem 'tinypng'
   # n+1検知
   gem 'bullet'
 
