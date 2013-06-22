@@ -20,7 +20,7 @@ gem 'feedzirra', :git => 'git://github.com/pauldix/feedzirra.git', :ref => '7172
 # gem 'sprockets-rails', github: 'rails/sprockets-rails'
 gem 'sass-rails', '~> 4.0.0.rc2'
 gem 'compass-rails', github: "milgner/compass-rails", branch: "rails4"
-# gem 'compass-rails', github: 'milgner/compass-rails', ref: '1749c06f15dc4b058427e7969810457213647fb8'
+gem 'font-awesome-sass-rails'
 gem 'bootstrap-sass'
 gem 'coffee-rails', '~> 4.0.0.rc2'
 gem 'haml-rails'

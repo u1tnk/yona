@@ -2,8 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import "compass/utilities"
-@import "compass/css3"
+@import '_variables'
+@import 'font-awesome'
 
 html, body
   height: 100%
@@ -27,9 +27,8 @@ li
 
 .scroll
   height: 100%
-  // わかりやすくするための仮
-  background-color: #DDD
-  +border-radius
+  background-color: darken($baseColor, 10%)
+  +border-radius(3px)
 
 .scroll ul
   height: 100%
