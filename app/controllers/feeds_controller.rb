@@ -2,11 +2,19 @@ class FeedsController < ApplicationController
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tags = current_user.tags
+    @unreads = []
+
+    # TODO モデルへ
     @unread_user_feeds = UserFeed.unreads(current_user)
+    current_user.tags.map do |tag|
+      user_feeds = UserFeed.select_by_tag(@unread_user_feeds, tag)
+      next if user_feeds.empty?
+      @unreads << {tag: tag, user_feeds: user_feeds}
+    end
+
     respond_to do |format|
       format.html
-      format.json
+      format.json { render json: @unreads }
     end
   end
 

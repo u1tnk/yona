@@ -3,10 +3,11 @@
     .row-fluid.scroll-container
       .span2.scroll
         %ul#tags.unstyled.nav.nav-stacked.nav-pills
-          - @tags.each do |tag|
+          - @unreads.each do |u|
+            - tag = u[:tag]
+            - user_feeds = u[:user_feeds]
             %li.nav-header
               = tag.label
-              - user_feeds = UserFeed.select_by_tag(@unread_user_feeds, tag)
               - unless user_feeds.empty?
                 - user_feeds.each do |uf|
                 - feed = uf.feed
