@@ -4,12 +4,10 @@
       .span2.scroll
         %ul#tags.unstyled.nav.nav-stacked.nav-pills
           - @unreads.each do |u|
-            - tag = u[:tag]
-            - user_feeds = u[:user_feeds]
             %li.nav-header
-              = tag.label
-              - unless user_feeds.empty?
-                - user_feeds.each do |uf|
+              = u.tag.label
+              - unless u.user_feeds.empty?
+                - u.user_feeds.each do |uf|
                 - feed = uf.feed
                   %li
                     = link_to(url_for(controller: :articles, action: :index, feed_id: feed.id), remote: true, 'data-type' => :html, class: "feed_link") do
