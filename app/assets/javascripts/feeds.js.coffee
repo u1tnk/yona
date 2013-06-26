@@ -25,4 +25,14 @@ $ ->
     $(this).addClass('focused')
 
 
+  # faviconが表示できなかったらrssアイコン表示
+  favicon = index.find('.favicon')
+  favicon.hide()
+  alt_rss_icon = $('<i class = "icon-rss"></i>')
+  favicon.before(alt_rss_icon)
+
+  favicon.bind 'load', ->
+    $(this).show()
+    $(this).prev().hide()
+
 

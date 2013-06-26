@@ -91,6 +91,9 @@ GEM
       multipart-post (~> 1.1)
     ffaker (1.16.1)
     ffi (1.9.0)
+    font-awesome-sass-rails (3.0.2.2)
+      railties (>= 3.1.1)
+      sass-rails (>= 3.1.1)
     formatador (0.2.4)
     fssm (0.2.10)
     guard (1.8.1)
@@ -291,6 +294,7 @@ DEPENDENCIES
   fabrication
   feedzirra!
   ffaker
+  font-awesome-sass-rails
   guard
   guard-bundler
   guard-livereload
