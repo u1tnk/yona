@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.0.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0.rc2'
+gem 'rails', '4.0.0'
 
 gem 'settingslogic'
 gem 'enumerated_attribute'
@@ -18,11 +18,11 @@ gem 'omniauth-github'
 gem 'feedzirra', :git => 'git://github.com/pauldix/feedzirra.git', :ref => '71721ddaeba18383ae283600b6a2eb8a717d7b58'
 
 # gem 'sprockets-rails', github: 'rails/sprockets-rails'
-gem 'sass-rails', '~> 4.0.0.rc2'
+gem 'sass-rails', '~> 4.0.0'
 gem 'compass-rails', github: "milgner/compass-rails", branch: "rails4"
 gem 'font-awesome-sass-rails'
 gem 'bootstrap-sass'
-gem 'coffee-rails', '~> 4.0.0.rc2'
+gem 'coffee-rails', '~> 4.0.0'
 gem 'haml-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
