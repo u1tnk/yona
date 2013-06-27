@@ -43,10 +43,17 @@ img.favicon
   width: 18px
   height: 18px
 
-
 .feed_title
-  text-overflow: ellipsis
   width: 75%
-  overflow: hidden
-  white-space: nowrap
-  float: left
+  display: inline-block
+  +ellipsis
+
+.readed
+  color: darken($baseColor, 40%)
+
+.focused
+  background-color: darken($baseColor, 30%)
+  color: darken($baseColor, 90%)
+  +border-radius(3px)
+
+
