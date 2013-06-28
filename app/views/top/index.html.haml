@@ -1,2 +1,14 @@
-%h1 Top#index
-%p Find me in app/views/top/index.html.haml
+- unless current_user
+  login please
+- else
+  .index
+    = link_to('refresh', url_for(controller: :feeds, action: :index), remote: true, 'data-type' => :html, class: "refresh_link")
+    .container-fluid
+      .row-fluid.scroll-container
+        .span2.scroll
+          %ul#tags.unstyled.nav
+        .span3.scroll
+          %ul#articles
+        .span7.scroll
+          %ul#contents
+

@@ -13,7 +13,7 @@
           %li
             = current_user.screen_name
             .btn-group
-              .btn= link_to 'upload opml', url_for(action: :upload)
+              .btn= link_to 'upload opml', url_for(controller: :feeds, action: :upload)
               .btn= link_to 'new feed', new_feed_path
             .btn-group
               = link_to "Logout" , logout_path, class: "btn"

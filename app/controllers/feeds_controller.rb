@@ -13,7 +13,6 @@ class FeedsController < ApplicationController
     current_user.tags.map do |tag|
       user_feeds = UserFeed.select_by_tag(@unread_user_feeds, tag)
       next if user_feeds.empty?
-#       @unreads << {tag: tag, user_feeds: user_feeds}
       uc = UnreadsContainer.new
       uc.tag = tag
       uc.user_feeds = user_feeds
@@ -21,9 +20,8 @@ class FeedsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html
+      format.html { render layout: false}
       format.json { render json: @unreads, each_serializer: UnreadsContainerSerializer }
-#       format.json { render json: Tag.first }
     end
   end
 

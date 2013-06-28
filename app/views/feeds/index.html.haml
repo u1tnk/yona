@@ -1,21 +1,11 @@
-.index
-  .container-fluid
-    .row-fluid.scroll-container
-      .span2.scroll
-        %ul#tags.unstyled.nav
-          - @unreads.each do |u|
-            %li.nav-header
-              = u.tag.label
-              - u.user_feeds.each do |uf|
-              - feed = uf.feed
-                %li
-                  = link_to(url_for(controller: :articles, action: :index, feed_id: feed.id), remote: true, 'data-type' => :html, class: "feed_link") do
-                    .feed_title
-                      = image_tag "#{feed.html_url}favicon.ico", alt: feed.title, class: 'favicon'
-                      = uf.feed.title
-                    %span.badge= uf.unread_articles_count
-      .span3.scroll
-        %ul#articles
-      .span7.scroll
-        %ul#contents
-
+- @unreads.each do |u|
+  %li.nav-header
+    = u.tag.label
+    - u.user_feeds.each do |uf|
+    - feed = uf.feed
+      %li
+        = link_to(url_for(controller: :articles, action: :index, feed_id: feed.id), remote: true, 'data-type' => :html, class: "feed_link") do
+          .feed_title
+            = image_tag "#{feed.html_url}favicon.ico", alt: feed.title, class: 'favicon'
+            = uf.feed.title
+          %span.badge= uf.unread_articles_count
