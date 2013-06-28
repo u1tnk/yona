@@ -1,6 +1,11 @@
 $ ->
   index = $(".index")
   feed_links = index.find('a.feed_link')
+
+  feed_links.click ->
+    feed_links.removeClass('focused')
+    $(this).addClass('focused')
+
   feed_links.on(
     'ajax:success'
     (data, res, xhr) ->
@@ -12,7 +17,6 @@ $ ->
         self = $(this)
         index.find('a.article_link').removeClass('focused')
         self.addClass('focused')
-
         self.addClass('readed')
 
         unless self.hasClass('readed')
@@ -26,16 +30,18 @@ $ ->
           $(this).addClass('readed')
       )
   )
-  feed_links.click ->
-    feed_links.removeClass('focused')
-    $(this).addClass('focused')
 
-  KEYCODE_H = 72
-  KEYCODE_J = 74
-  KEYCODE_K = 75
-  KEYCODE_L = 76
-  $('*').bind 'keydown', (e) ->
-    console.log e.keyCode
+  $(window).keydown (e) ->
+    press_char = String.fromCharCode e.keyCode
+    switch press_char
+      when 'H'
+        console.log 'h'
+      when 'J'
+        console.log 'j'
+      when 'K'
+        console.log 'k'
+      when 'L'
+        console.log 'l'
 
   feed_links.first().click()
 
