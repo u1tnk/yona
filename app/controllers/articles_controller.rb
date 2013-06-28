@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
     @articles = @feed.articles.unread(current_user)
     respond_to do |format|
       format.html { render layout: false }
-      format.json
+      format.json { render json: @articles, root: false}
     end
   end
 
