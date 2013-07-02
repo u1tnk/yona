@@ -1,7 +1,7 @@
-- unless current_user
-  login please
-- else
-  .index
+.top
+  - unless current_user
+    login please
+  - else
     = link_to('refresh', url_for(controller: :feeds, action: :index), remote: true, 'data-type' => :html, class: "refresh_link")
     .container-fluid
       .row-fluid.scroll-container
