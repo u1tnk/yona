@@ -1,39 +1,36 @@
-$(window).keydown (e) ->
+current_kind = null
+current_node = null
+
+key2Command = (e) ->
   press_char = String.fromCharCode e.keyCode
-  switch press_char
-    when 'H'
-      console.log 'h'
-    when 'J'
-      console.log 'j'
-    when 'K'
-      console.log 'k'
-    when 'L'
-      console.log 'l'
+  console.log(e)
+
+
+$(window).keydown (e) ->
+  console.log(key2Command(e))
 
 top = null
 
+load_article = (data, res, xhr)->
+  top.find('#contents').html(res)
+  $(this).addClass('readed')
+
 load_feed = (data, res, xhr)->
-  (data, res, xhr) ->
-    top.find('#articles').html(res)
-    top.find('#contents').children().remove()
+  top.find('#articles').html(res)
+  top.find('#contents').children().remove()
 
-    top.find('a.article_link').click ->
+  top.find('a.article_link').click ->
 
-      self = $(this)
-      top.find('a.article_link').removeClass('focused')
-      self.addClass('focused')
-      self.addClass('readed')
+    self = $(this)
+    top.find('a.article_link').removeClass('focused')
+    self.addClass('focused')
+    self.addClass('readed')
 
-      unless self.hasClass('readed')
-        unread_articles_count = feed_links.filter('.focused').find('.unread_articles_count')
-        unread_articles_count.text(parseInt(unread_articles_count.text()) - 1)
+    unless self.hasClass('readed')
+      unread_articles_count = feed_links.filter('.focused').find('.unread_articles_count')
+      unread_articles_count.text(parseInt(unread_articles_count.text()) - 1)
 
-    top.find('a.article_link').on(
-      'ajax:success'
-      (data, res, xhr) ->
-        top.find('#contents').html(res)
-        $(this).addClass('readed')
-    )
+  top.find('a.article_link').on('ajax:success', load_article)
 
 
 load_all = (data, res, xhr)->
@@ -46,7 +43,7 @@ load_all = (data, res, xhr)->
     feed_links.removeClass('focused')
     $(this).addClass('focused')
 
-  # feed_links.on('ajax:success', load_feed)
+  feed_links.on('ajax:success', load_feed)
   feed_links.first().click()
 
 $ ->
