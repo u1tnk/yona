@@ -3,11 +3,18 @@ current_node = null
 
 key2Command = (e) ->
   press_char = String.fromCharCode e.keyCode
-  console.log(e)
+  unless e.shiftKey
+    return press_char.toLowerCase()
+  press_char
 
+actionMap = {}
+# TODO action定義
 
 $(window).keydown (e) ->
-  console.log(key2Command(e))
+  command = key2Command e
+  console.log(command)
+  action = actionMap[current_kind] && actionMap[kind][command]
+  action() if action
 
 top = null
 
