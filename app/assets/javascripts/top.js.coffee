@@ -1,22 +1,54 @@
+top = null
 current_kind = null
-current_node = null
+current_feed = null
+current_article = null
 
 key2Command = (e) ->
   press_char = String.fromCharCode e.keyCode
-  unless e.shiftKey
-    return press_char.toLowerCase()
-  press_char
+  if e.shiftKey
+    press_char
+  else
+    press_char.toLowerCase()
 
-actionMap = {}
+get_feed_links = ->
+  top.find('a.feed_link')
+
+get_article_links = ->
+  top.find('a.article_link')
+
+get_next_feed = ->
+  feed_links = get_feed_links()
+  next_feed_dom = feed_links.get(feed_links.index(current_feed) + 1)
+  if next_feed_dom
+    $(next_feed_dom)
+  else
+    feed_links.first()
+
+get_previous_feed = ->
+  feed_links = get_feed_links()
+  previous_feed_dom = feed_links.get(feed_links.index(current_feed) - 1)
+  $(previous_feed_dom) if previous_feed_dom
+
+
+actionMap = {
+  'feed': {
+    'j' : ->
+      next_feed = get_next_feed()
+      next_feed.click() if next_feed
+    'k' : ->
+      previous_feed = get_previous_feed()
+      previous_feed.click() if previous_feed
+    'l' : ->
+      get_article_links().first().click()
+  }
+}
 # TODO action定義
 
 $(window).keydown (e) ->
   command = key2Command e
   console.log(command)
-  action = actionMap[current_kind] && actionMap[kind][command]
+  action = actionMap[current_kind] && actionMap[current_kind][command]
   action() if action
-
-top = null
 
 load_article = (data, res, xhr)->
   top.find('#contents').html(res)
@@ -26,18 +58,21 @@ load_feed = (data, res, xhr)->
   top.find('#articles').html(res)
   top.find('#contents').children().remove()
 
-  top.find('a.article_link').click ->
+  article_links = get_article_links()
+  article_links.click ->
 
-    self = $(this)
-    top.find('a.article_link').removeClass('focused')
-    self.addClass('focused')
-    self.addClass('readed')
+    current_kind = 'article'
+    current_article.removeClass('focused') if current_article
+    current_article = $(this)
+    current_article.addClass('focused')
 
     unless self.hasClass('readed')
       unread_articles_count = feed_links.filter('.focused').find('.unread_articles_count')
       unread_articles_count.text(parseInt(unread_articles_count.text()) - 1)
 
-  top.find('a.article_link').on('ajax:success', load_article)
+    current_article.addClass('readed')
+
+  article_links.on('ajax:success', load_article)
 
 
 load_all = (data, res, xhr)->
@@ -45,10 +80,13 @@ load_all = (data, res, xhr)->
   top.find('#articles').children().remove()
   top.find('#contents').children().remove()
 
-  feed_links = top.find('a.feed_link')
+  feed_links = get_feed_links()
   feed_links.click ->
-    feed_links.removeClass('focused')
-    $(this).addClass('focused')
+    current_kind = 'feed'
+    current_article = null
+    current_feed.removeClass('focused') if current_feed
+    current_feed = $(this)
+    current_feed.addClass('focused')
 
   feed_links.on('ajax:success', load_feed)
   feed_links.first().click()
