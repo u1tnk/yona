@@ -16,31 +16,42 @@ get_feed_links = ->
 get_article_links = ->
   top.find('a.article_link')
 
-get_next_feed = ->
-  feed_links = get_feed_links()
-  next_feed_dom = feed_links.get(feed_links.index(current_feed) + 1)
-  if next_feed_dom
-    $(next_feed_dom)
+get_next = (all, self, diff = 1)->
+  next_dom = all.get(all.index(self) + diff)
+  if next_dom
+    $(next_dom)
   else
-    feed_links.first()
-
-get_previous_feed = ->
-  feed_links = get_feed_links()
-  previous_feed_dom = feed_links.get(feed_links.index(current_feed) - 1)
-  $(previous_feed_dom) if previous_feed_dom
-
+    all.first()
 
 actionMap = {
   'feed': {
     'j' : ->
-      next_feed = get_next_feed()
+      next_feed = get_next(get_feed_links(), current_feed)
       next_feed.click() if next_feed
     'k' : ->
-      previous_feed = get_previous_feed()
+      previous_feed = get_next(get_feed_links(), current_feed, - 1)
       previous_feed.click() if previous_feed
     'l' : ->
       get_article_links().first().click()
-  }
+  },
+  'article': {
+    'h' : ->
+      current_kind = 'feed'
+      current_article.removeClass('focused')
+      current_article = null
+    'j' : ->
+      next_article = get_next(get_article_links(), current_article)
+      next_article.click() if next_article
+    'J' : ->
+      actionMap['feed']['j']()
+    'k' : ->
+      previous_article = get_next(get_article_links(), current_article, - 1)
+      previous_article.click() if previous_article
+    'K' : ->
+      actionMap['feed']['k']()
+    'v' : ->
+
+  },
 }
 # TODO action定義
 
@@ -66,8 +77,8 @@ load_feed = (data, res, xhr)->
     current_article = $(this)
     current_article.addClass('focused')
 
-    unless self.hasClass('readed')
-      unread_articles_count = feed_links.filter('.focused').find('.unread_articles_count')
+    unless current_article.hasClass('readed')
+      unread_articles_count = article_links.filter('.focused').find('.unread_articles_count')
       unread_articles_count.text(parseInt(unread_articles_count.text()) - 1)
 
     current_article.addClass('readed')
