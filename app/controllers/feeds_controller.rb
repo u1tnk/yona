@@ -70,7 +70,7 @@ class FeedsController < ApplicationController
     if request.method == "POST"
       Feed.import current_user, request.params[:opml_file].read
       Feed.fetch_all
-      redirect_to :feeds
+      redirect_to :root
     end
   end
 
