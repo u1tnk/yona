@@ -89,8 +89,10 @@ class Feed < ActiveRecord::Base
       raw = Feedzirra::Feed.fetch_raw(url, options)
       data = Feedzirra::Feed.parse(raw.strip) if raw
 
+      self.last_fetched_at = DateTime.now
       if !data || (!reload && last_modified_at && last_modified_at >= data.last_modified)
         logger.debug "no updated data: " + url
+        self.save1
         return
       end
       # loafah.scrub :pruneで有害タグを削除
