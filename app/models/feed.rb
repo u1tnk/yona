@@ -71,7 +71,13 @@ class Feed < ActiveRecord::Base
     end
   end
 
-  def fetch(reload: false)
+  MIN_FETCH_TERM_MINUTES = 5
+  def fetch
+    return if last_fetched_at && last_fetched_at > MIN_FETCH_TERM_MINUTES.minutes.ago
+    fetch_now
+  end
+
+  def fetch_now(reload: false)
     data = nil
     begin
       options = {}

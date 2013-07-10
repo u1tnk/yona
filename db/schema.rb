@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2) do
     t.string   "creator"
     t.string   "etag"
     t.datetime "last_modified_at"
+    t.datetime "last_fetched_at"
     t.integer  "articles_count",   default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"

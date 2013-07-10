@@ -8,6 +8,7 @@ class Main < ActiveRecord::Migration
       t.string :creator
       t.string :etag
       t.datetime :last_modified_at
+      t.datetime :last_fetched_at
       t.integer :articles_count, null: false, default: 0
       t.integer :articles_count, null: false, default: 0
 
