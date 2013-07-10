@@ -30,6 +30,11 @@ get_next = (all, self, diff = 1)->
   else
     all.first()
 
+clean_read_feeds = ->
+  top.find('.unread_articles_count').each (i, unread_articles_count) ->
+    unread_articles_count = $(unread_articles_count)
+    unread_articles_count.closest('.feed_link').hide() if unread_articles_count.text() == '0'
+
 actionMap = {
   'common': {
     'r': ->
@@ -39,11 +44,13 @@ actionMap = {
     'j' : ->
       next_feed = get_next(get_feed_links(), current_feed)
       if next_feed
+        clean_read_feeds()
         feeds_panel.scrollTop(feeds_panel.scrollTop() + next_feed.position().top - SCROLL_MARGIN)
         next_feed.click()
     'k' : ->
       next_feed = get_next(get_feed_links(), current_feed, - 1)
       if next_feed
+        clean_read_feeds()
         feeds_panel.scrollTop(feeds_panel.scrollTop() + next_feed.position().top - SCROLL_MARGIN)
         next_feed.click() if next_feed
     'l' : ->
