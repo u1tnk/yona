@@ -1,7 +1,14 @@
+SCROLL_MARGIN = 100
+
 top = null
 current_kind = null
 current_feed = null
 current_article = null
+
+feeds_panel = null
+articles_panel = null
+
+refresh_link = null
 
 key2Command = (e) ->
   press_char = String.fromCharCode e.keyCode
@@ -24,15 +31,24 @@ get_next = (all, self, diff = 1)->
     all.first()
 
 actionMap = {
+  'common': {
+    'r': ->
+      refresh_link.click()
+  },
   'feed': {
     'j' : ->
       next_feed = get_next(get_feed_links(), current_feed)
-      next_feed.click() if next_feed
+      if next_feed
+        feeds_panel.scrollTop(feeds_panel.scrollTop() + next_feed.position().top - SCROLL_MARGIN)
+        next_feed.click()
     'k' : ->
-      previous_feed = get_next(get_feed_links(), current_feed, - 1)
-      previous_feed.click() if previous_feed
+      next_feed = get_next(get_feed_links(), current_feed, - 1)
+      if next_feed
+        feeds_panel.scrollTop(feeds_panel.scrollTop() + next_feed.position().top - SCROLL_MARGIN)
+        next_feed.click() if next_feed
     'l' : ->
       get_article_links().first().click()
+      articles_panel.scrollTop(0)
   },
   'article': {
     'h' : ->
@@ -41,24 +57,32 @@ actionMap = {
       current_article = null
     'j' : ->
       next_article = get_next(get_article_links(), current_article)
-      next_article.click() if next_article
+      if next_article
+        articles_panel.scrollTop(articles_panel.scrollTop() + next_article.position().top - SCROLL_MARGIN)
+        next_article.click()
     'J' : ->
+      current_article = null
       actionMap['feed']['j']()
     'k' : ->
-      previous_article = get_next(get_article_links(), current_article, - 1)
-      previous_article.click() if previous_article
+      next_article = get_next(get_article_links(), current_article, - 1)
+      if next_article
+        articles_panel.scrollTop(articles_panel.scrollTop() + next_article.position().top - SCROLL_MARGIN)
+        next_article.click()
     'K' : ->
+      current_article = null
       actionMap['feed']['k']()
-    'v' : ->
-
+    'n' : ->
+      # 拡張でvを使うのでここではnとする
+      window.open $('.show-original-button').attr('href'), '_blank'
+    's' : ->
+      console.log('save')
   },
 }
 # TODO action定義
 
-$(window).keydown (e) ->
+$(window).keypress (e) ->
   command = key2Command e
-  console.log(command)
-  action = actionMap[current_kind] && actionMap[current_kind][command]
+  action = (actionMap[current_kind] && actionMap[current_kind][command]) || actionMap['common'][command]
   action() if action
 
 load_article = (data, res, xhr)->
@@ -70,15 +94,16 @@ load_feed = (data, res, xhr)->
   top.find('#contents').children().remove()
 
   article_links = get_article_links()
+  feed_links = get_feed_links()
   article_links.click ->
-
     current_kind = 'article'
     current_article.removeClass('focused') if current_article
     current_article = $(this)
     current_article.addClass('focused')
 
     unless current_article.hasClass('readed')
-      unread_articles_count = article_links.filter('.focused').find('.unread_articles_count')
+      unread_articles_count = feed_links.filter('.focused').find('.unread_articles_count')
+      console.log unread_articles_count.size()
       unread_articles_count.text(parseInt(unread_articles_count.text()) - 1)
 
     current_article.addClass('readed')
@@ -87,7 +112,7 @@ load_feed = (data, res, xhr)->
 
 
 load_all = (data, res, xhr)->
-  top.find('#tags').html(res)
+  top.find('#feeds').html(res)
   top.find('#articles').children().remove()
   top.find('#contents').children().remove()
 
@@ -104,10 +129,15 @@ load_all = (data, res, xhr)->
 
 $ ->
   top = $(".top")
+  feeds_panel = top.find('#feeds')
+  articles_panel = top.find('#articles')
   refresh_link = top.find('a.refresh_link')
 
   refresh_link.on('ajax:success', load_all)
-  refresh_link.click()
+
+  fetch_link = top.find('a.fetch_link')
+  fetch_link.on('ajax:success', -> refresh_link.click())
+  fetch_link.click()
 
   # faviconが表示できなかったらrssアイコン表示
   favicon = top.find('.favicon')

@@ -8,4 +8,4 @@
           .feed_title
             = image_tag "#{feed.html_url}favicon.ico", alt: feed.title, class: 'favicon'
             = uf.feed.title
-          %span.badge= uf.unread_articles_count
+          %span.badge.unread_articles_count= uf.unread_articles_count

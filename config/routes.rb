@@ -4,6 +4,7 @@ Yona::Application.routes.draw do
     resources :articles
     collection do
       match :upload, via: [:get, :post]
+      post :fetch
     end
   end
 

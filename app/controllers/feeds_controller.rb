@@ -74,6 +74,11 @@ class FeedsController < ApplicationController
     end
   end
 
+  def fetch
+    current_user.feeds.each{|f| f.fetch}
+    render json: 'success'
+  end
+
   private
     def set_feed
       @feed = Feed.find(params[:id])

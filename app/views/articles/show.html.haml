@@ -1,4 +1,5 @@
 .summary
   = raw @article.content
 .show_original.btn-group
-  = link_to 'show original', @article.url, class: "btn", target: "_blank"
+  = link_to 'original', @article.url, class: "btn show-original-button", target: "_blank"
+  = link_to 'save', @article.url, class: "btn save-button"

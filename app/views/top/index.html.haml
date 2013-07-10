@@ -1,12 +1,15 @@
+
 .top
   - unless current_user
     login please
   - else
-    = link_to('refresh', url_for(controller: :feeds, action: :index), remote: true, 'data-type' => :html, class: "refresh_link")
+    - # hide links
+    = link_to('refresh', url_for(controller: :feeds, action: :index), remote: true, 'data-type' => :html, class: "refresh_link", style: 'display:none')
+    = link_to('fetch', url_for(controller: :feeds, action: :fetch), remote: true, 'data-type' => :html, class: "fetch_link", method: 'post', style: 'display:none')
     .container-fluid
       .row-fluid.scroll-container
         .span2.scroll
-          %ul#tags.unstyled.nav
+          %ul#feeds.unstyled.nav
         .span3.scroll
           %ul#articles
         .span7.scroll
