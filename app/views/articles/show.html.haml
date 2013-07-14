@@ -1,5 +1,11 @@
-.summary
-  = raw @article.content
-.show_original.btn-group
-  = link_to 'original', @article.url, class: "btn show-original-button", target: "_blank"
-  = link_to 'save', @article.url, class: "btn save-button"
+%ul
+  %li
+    .control.btn-group.pull-right
+      = link_to 'view', @article.url, class: "btn show-original-button", target: "_blank"
+      = link_to 'save', @article.url, class: "btn save-button"
+    %h3
+      = raw @article.title
+    %span= @article.updated_at.to_s(:db)
+  %li
+    .content-inner
+      = raw @article.content

@@ -11,8 +11,6 @@
       .navbar-inner
         = link_to 'Yona', root_path, class: 'brand'
         - if current_user
-          %ul.nav
-            %li= link_to 'upload opml', url_for(controller: :feeds, action: :upload)
           %ul.nav.pull-right
             %li.dropdown
               = link_to '#', class: "dropdown-toggle", "data-toggle" => "dropdown" do
