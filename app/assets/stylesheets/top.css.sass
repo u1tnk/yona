@@ -5,12 +5,6 @@ html, body
   height: 100%
   overflow: hidden
 
-ul
-  margin-left: 12px
-
-li
-  list-style-type : none
-
 .top
   position: absolute
   top: 50px
@@ -18,38 +12,45 @@ li
   right: 0
   bottom: 10px
 
-.container-fluid, .row-fluid
-  height: 100%
+  ul
+    margin-left: 6px
 
-.scroll
-  height: 100%
-  background-color: darken($baseColor, 10%)
-  +border-radius(3px)
+  li
+    list-style-type: none
+    margin: 3px 0 3px 0
 
-.scroll ul
-  height: 100%
-  overflow-y: auto
+  .container-fluid, .row-fluid
+    height: 100%
 
-// スクロールバーが重なる
-.scroll>*
-  padding-left: 10px
-  padding-right: 13px
+  .scroll
+    height: 100%
+    background-color: darken($baseColor, 10%)
+    +border-radius(3px)
 
-img.favicon
-  width: 18px
-  height: 18px
+  .scroll ul
+    height: 100%
+    overflow-y: auto
 
-.feed_title
-  width: 75%
-  display: inline-block
-  +ellipsis
+  // スクロールバーが重なる
+  .scroll>*
+    padding-left: 10px
+    padding-right: 13px
 
-.readed
-  color: darken($baseColor, 40%)
+  img.favicon
+    width: 18px
+    height: 18px
 
-.focused
-  background-color: darken($baseColor, 30%)
-  color: darken($baseColor, 90%)
-  +border-radius(3px)
+  .feed_title
+    width: 75%
+    display: inline-block
+    +ellipsis
+
+  .readed
+    color: darken($baseColor, 40%)
+
+  .focused
+    background-color: darken($baseColor, 30%)
+    color: darken($baseColor, 90%)
+    +border-radius(3px)
 
 
