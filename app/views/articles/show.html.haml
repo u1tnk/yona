@@ -1,9 +1,11 @@
 %ul
   %li
     .control.btn-group.pull-right
-      = link_to 'view', @article.url, class: "btn show-original-button", target: "_blank"
-      = link_to 'save', @article.url, class: "btn save-button"
-    %h3
+      = link_to @article.url, class: "btn show-original-button", target: "_blank" do
+        %i.icon-external-link
+      = link_to @article.url, class: "btn save-button" do
+        %i.icon-save
+    %h4
       = raw @article.title
     %span= @article.updated_at.to_s(:db)
   %li
