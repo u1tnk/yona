@@ -20,7 +20,7 @@ class FeedsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render layout: false}
+      format.html { render partial: 'feeds'}
       format.json { render json: @unreads, each_serializer: UnreadsContainerSerializer }
     end
   end

@@ -4,17 +4,14 @@ class ArticlesController < ApplicationController
     @feed = Feed.find(feed_id)
     @articles = @feed.articles.unread(current_user)
     respond_to do |format|
-      format.html { render layout: false }
+      format.html { render partial: 'articles' }
       format.json { render json: @articles, root: false}
     end
   end
 
   def show(id)
     @article = Article.find(id)
-    ArticleReadLog.where(user: current_user, article: @article, feed: @article.feed).first_or_create
-    respond_to do |format|
-      format.html { render layout: false }
-      format.json
-    end
+    ArticleReadLog.where(user: current_user, article_id: @article, feed: @article.feed).first_or_create
+    head :ok
   end
 end

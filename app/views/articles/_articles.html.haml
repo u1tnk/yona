@@ -1,2 +1,6 @@
 - @articles.each do |article|
   %li= link_to raw(article.title), url_for(controller: :articles, action: :show, id: article.id), remote: true, 'data-type' => :html, class: "article_link"
+
+  .contents{style: 'display:none'}
+    - @article = article
+    = render 'article'

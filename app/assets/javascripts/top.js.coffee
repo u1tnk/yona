@@ -116,10 +116,6 @@ $(window).keypress (e) ->
   action = (actionMap[current_kind] && actionMap[current_kind][command]) || actionMap['common'][command]
   action() if action
 
-load_article = (data, res, xhr)->
-  top.find('#contents').html(res)
-  $(this).addClass('readed')
-
 load_feed = (data, res, xhr)->
   top.find('#articles').html(res)
   top.find('#contents').children().remove()
@@ -141,8 +137,7 @@ load_feed = (data, res, xhr)->
 
     current_article.addClass('readed')
 
-  article_links.on('ajax:success', load_article)
-
+    top.find('#contents').html($(this).parent().next().html())
 
 load_all = (data, res, xhr)->
   top.find('#feeds').html(res)
